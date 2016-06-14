@@ -1,2 +1,4 @@
-# thunderbird-mcd
-Mission Control Desktop aka Autoconfig for Thunderbird
+thunderbird-mcd
+=====================
+
+Provides automated configuration for Thunderbird via PHP + OpenLDAP.
