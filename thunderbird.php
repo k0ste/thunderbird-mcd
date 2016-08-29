@@ -30,28 +30,32 @@ if($entry_uid == false) {
 
 $info = ldap_get_entries($link, $result_uid);
 
-if (isset($info[0]["telephonenumber"]) == false) {
+if (isset($info[0]["telephonenumber"])) {
+  $ldap_extention = $info[0]["telephonenumber"][0];
+  $ldap_extention = "$exten_prefix$ldap_extention";
+}
+else {
   $ldap_extention = '';
 }
-else {
-  $ldap_extention = ($info[0]["telephonenumber"][0]);
-  $ldap_extention = " exten. 1-$ldap_extention<br>";
-}
 
-if (isset($info[0]["telexnumber"]) == false) {
+if (isset($info[0]["telexnumber"])) {
+  $ldap_icq = $info[0]["telexnumber"][0];
+  $ldap_icq = "<br>$icq_prefix$ldap_icq";
+}
+else {
   $ldap_icq = $icq_default;
 }
-else {
-  $ldap_icq = ($info[0]["telexnumber"][0]);
-  $ldap_icq = "ICQ: $ldap_icq";
-}
 
-if (isset($info[0]["pager"]) == false) {
-  $ldap_pager = '';
+if (isset($info[0]["pager"])) {
+  $ldap_pager = $info[0]["pager"][0];
+  $ldap_pager = "<br>+$ldap_pager";
+}
+elseif (isset($info[0]["homephone"])) {
+  $ldap_pager = $info[0]["homephone"][0];
+  $ldap_pager = "<br>+$ldap_pager";
 }
 else {
-  $ldap_pager = ($info[0]["pager"][0]);
-  $ldap_pager = "+$ldap_pager<br>";
+  $ldap_pager = '';
 }
 
 require_once 'ldap.vars.php';
@@ -64,14 +68,14 @@ if($entry_manager == false) {
     $signature = getSignatureManager($siga_marketing, $siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_all, $ldap_extention, $ldap_pager, $ldap_icq, $siga_postfix);
 }
   else {
-    $signature = getSignatureAll($siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_all, $ldap_extention, $siga_postfix);
+    $signature = getSignatureAll($siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_all, $ldap_extention, $ldap_pager, $siga_postfix);
   }
-}
+} 
 else {
   $ldap_attributes = ldap_get_attributes($link, $entry_manager);
   $counter = $ldap_attributes["count"];
   if($counter < 1) {
-    $signature = getSignatureAll($siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_all, $ldap_extention, $siga_postfix);
+    $signature = getSignatureAll($siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_all, $ldap_extention, $ldap_pager, $siga_postfix);
   }
   else {
     $signature = getSignatureManager($siga_marketing, $siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_manager, $ldap_extention, $ldap_pager, $ldap_icq, $siga_postfix);
