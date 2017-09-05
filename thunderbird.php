@@ -5,6 +5,7 @@
 require_once 'ldap.cfg.php';
 require_once 'ldap.defaults.php';
 require_once 'ldap.siga.php';
+require_once 'caldav.php';
 
 if(empty($_GET['user'])) {
   exit('Error: user not present');
@@ -20,7 +21,7 @@ if(!$ldap_bind) {
   exit('Error (' . ldap_errno($link) . '): ' . $ldap_error . "\n");
 }
 
-$result_uid = ldap_search($link, $ldap_base, $ldap_filter);
+$result_uid = ldap_search($link, $ldap_base, $ldap_filter, $ldap_attributes);
 $entry_uid = ldap_first_entry($link, $result_uid);
 
 if($entry_uid == false) {
@@ -80,6 +81,10 @@ else {
   else {
     $signature = getSignatureManager($siga_marketing, $siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_manager, $ldap_extention, $ldap_pager, $ldap_icq, $siga_postfix);
   }
+}
+
+if ($caldav_enable == true) {
+  $caldav_settings = makeCaldavSettings($caldav_entries, $caldav_base_url, $ldap_entryuuid);
 }
 
 ldap_unbind($link);

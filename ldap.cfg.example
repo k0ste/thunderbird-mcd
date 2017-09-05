@@ -33,6 +33,12 @@ $ldap_nonascii_desc = 'Domain';
 $ldap_nonascii_uri = "ldap://$ldap_host/$ldap_base??sub?(objectClass=posixAccount)";
 $quicktext_default_import = '/home/exchange/quicktext.xml';
 $messenger_save_dir = '/tmp';
+//Caldav
+$caldav_enable = true;
+$caldav_base_url = 'https://calendar.example.com/remote.php/dav/calendars/';
+$caldav_entries = array (
+    array (name => 'Personal', id => 'personal', color => '#3300ff', uuid => uniqid())
+);
 // Signature
 $siga_marketing = "Marketing bullshit<br>";
 $siga_prefix = "Best regards, ";
