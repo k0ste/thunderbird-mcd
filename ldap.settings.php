@@ -79,6 +79,7 @@ try {
   defaultPref("quicktext.defaultImport", "$quicktext_default_import");
   defaultPref("quicktext.firstTime", false);
   defaultPref("messenger.save.dir", "$messenger_save_dir");
+  $caldav_settings
   lockPref("mail.identity.id1.htmlSigFormat", true);
   lockPref("mail.identity.id1.htmlSigText", "$signature");
 } catch(e) {
