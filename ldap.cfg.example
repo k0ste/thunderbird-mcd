@@ -20,8 +20,8 @@ $ldap_target_gid = '1100';
 $exten_prefix = ' доб. 1-';
 $telnumber_all = '8-800-2000-600';
 $telnumber_manager = '8-800-2000-666';
-$icq_default = '<br>ICQ (Public): 911911, 119199';
-$icq_prefix = 'ICQ: ';
+$im_default = '<br>Telegram channel: @support';
+$im_prefix = 'Telegram: ';
 // Thunderbird
 $mail_domain = 'mail.example.com';
 $mail_server_type = 'imap';
