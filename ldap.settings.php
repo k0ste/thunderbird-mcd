@@ -57,6 +57,7 @@ try {
   lockPref("toolkit.telemetry.enabled", true);
   lockPref("toolkit.telemetry.prompted", 2);
   lockPref("mail.identity.id1.reply_to", "");
+  lockPref("mail.identity.id1.sig_on_fwd", true);
   lockPref("mail.spam.manualMark", true);
   lockPref("mail.spam.version", 1);
   lockPref("mail.rights.version", 1);
