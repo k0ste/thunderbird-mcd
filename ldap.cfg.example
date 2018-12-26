@@ -20,6 +20,7 @@ $ldap_target_gid = '1100';
 $exten_prefix = ' доб. 1-';
 $telnumber_all = '8-800-2000-600';
 $telnumber_manager = '8-800-2000-666';
+$im_enabled = true;
 $im_default = '<br>Telegram channel: @support';
 $im_prefix = 'Telegram: ';
 // Thunderbird
@@ -35,9 +36,13 @@ $quicktext_default_import = '/home/exchange/quicktext.xml';
 $messenger_save_dir = '/tmp';
 //Caldav
 $caldav_enable = true;
+$caldav_settings = "";
 $caldav_base_url = 'https://calendar.example.com/remote.php/dav/calendars/';
 $caldav_entries = array (
-    array (name => 'Personal', id => 'personal', color => '#3300ff', uuid => uniqid())
+    array ('name' => 'Personal',
+           'id' => 'personal',
+           'color' => '#3300ff',
+           'uuid' => uniqid())
 );
 // Signature
 $siga_marketing = "Marketing bullshit<br>";

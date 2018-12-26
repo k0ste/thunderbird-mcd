@@ -1,6 +1,6 @@
 <?php
 
-// (c) 2015-2017, Konstantin Shalygin <k0ste@k0ste.ru>
+// (c) 2015-2018, Konstantin Shalygin <k0ste@k0ste.ru>
 
 require_once 'ldap.cfg.php';
 require_once 'ldap.defaults.php';
@@ -34,8 +34,7 @@ $info = ldap_get_entries($link, $result_uid);
 if (isset($info[0]["telephonenumber"])) {
   $ldap_extention = $info[0]["telephonenumber"][0];
   $ldap_extention = "$exten_prefix$ldap_extention";
-}
-else {
+} else {
   $ldap_extention = '';
 }
 
@@ -43,8 +42,7 @@ if($im_enabled == true) {
   if (isset($info[0]["telexnumber"])) {
     $ldap_im = $info[0]["telexnumber"][0];
     $ldap_im = "<br>$im_prefix$ldap_im";
-  }
-  else {
+  } else {
     $ldap_im = $im_default;
   }
 }
@@ -56,8 +54,7 @@ if (isset($info[0]["pager"])) {
 elseif (isset($info[0]["homephone"])) {
   $ldap_pager = $info[0]["homephone"][0];
   $ldap_pager = "<br>+$ldap_pager";
-}
-else {
+} else {
   $ldap_pager = '';
 }
 
@@ -69,18 +66,15 @@ $entry_manager = ldap_first_entry($link, $result_manager);
 if($entry_manager == false) {
   if($ldap_gid == $ldap_target_gid) {
     $signature = getSignatureManager($siga_marketing, $siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_all, $ldap_extention, $ldap_pager, $ldap_im, $siga_postfix);
-}
-  else {
+} else {
     $signature = getSignatureAll($siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_all, $ldap_extention, $ldap_pager, $siga_postfix);
   }
-} 
-else {
+} else {
   $ldap_attributes = ldap_get_attributes($link, $entry_manager);
   $counter = $ldap_attributes["count"];
   if($counter < 1) {
     $signature = getSignatureAll($siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_all, $ldap_extention, $ldap_pager, $siga_postfix);
-  }
-  else {
+  } else {
     $signature = getSignatureManager($siga_marketing, $siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_manager, $ldap_extention, $ldap_pager, $ldap_im, $siga_postfix);
   }
 }
