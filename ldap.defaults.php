@@ -15,7 +15,7 @@ $ldap_attributes = array(
     "telexnumber",
     "pager",
     "homephone",
+    "homepostaladdress",
     "entryuuid"
 );
-
 ?>

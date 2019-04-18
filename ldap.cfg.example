@@ -49,4 +49,13 @@ $siga_marketing = "Marketing bullshit<br>";
 $siga_prefix = "Best regards, ";
 $siga_url = "<br>URL";
 $siga_postfix = "<br>Some spam";
+$siga_support_address_domain = 'example.com';
+$siga_support_address_prefix = 'info.';
+$siga_support_address_postfix = '';
+$siga_support_address_default = "$siga_support_address_prefix" . "global" . "$siga_support_address_postfix" . "@" . "$siga_support_address_domain";
+$siga_support_address_array = array(
+  'boston' => 'Boston',
+  'de' => 'Delaware',
+  'ny' => 'New York'
+);
 ?>
