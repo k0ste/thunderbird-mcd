@@ -11,10 +11,15 @@ if(empty($_GET['user'])) {
   exit('Error: user not present');
 }
 
-$link = ldap_connect($ldap_host, $ldap_port);
+=$ldap_uri = "$ldap_scheme://$ldap_host:$ldap_port";
+$link = ldap_connect($ldap_uri) or die("Can't parse LDAP uri");
 ldap_set_option($link, LDAP_OPT_PROTOCOL_VERSION, 3);
-$ldap_bind = ldap_bind($link, $ldap_user, $ldap_password);
 
+if($ldap_start_tls == true) {
+  $tls_link = ldap_start_tls($link) or die("LDAP START TLS failed");
+}
+
+$ldap_bind = ldap_bind($link, $ldap_user, $ldap_password);
 if(!$ldap_bind) {
   $ldap_errno = ldap_errno($link);
   $ldap_error = ldap_err2str($ldap_errno);
@@ -47,8 +52,8 @@ if($im_enabled == true) {
   }
 }
 
-if (isset($info[0]["homepostaladdress"])) {
-  $ldap_support_key = array_search($info[0]["homepostaladdress"][0], $siga_support_address_array);
+if (isset($info[0][$ldap_map_city])) {
+  $ldap_support_key = array_search($info[0][$ldap_map_city][0], $siga_support_address_array);
   if (isset($ldap_support_key)) {
     $ldap_support_mail = "$siga_support_address_prefix$ldap_support_key$siga_support_address_postfix" . "@" . "$siga_support_address_domain";
     $ldap_support_mail = "<br><a href=\\\"mailto:" . $ldap_support_mail . "\\\">" . $ldap_support_mail . "</a>";

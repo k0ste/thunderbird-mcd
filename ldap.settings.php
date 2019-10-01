@@ -46,12 +46,13 @@ try {
   lockPref("mail.identity.id1.fcc_folder_picker_mode", 0);
   lockPref("mail.identity.id1.stationery_folder", "imap://$ldap_mail_replaced@$mail_domain/Templates");
   lockPref("mail.identity.id1.reply_on_top", 1);
-  lockPref("ldap_2.servers._nonascii.auth.dn", "");
-  lockPref("ldap_2.servers._nonascii.auth.saslmech", "");
-  lockPref("ldap_2.servers._nonascii.description", "$ldap_nonascii_desc");
-  lockPref("ldap_2.servers._nonascii.filename", "ldap.mab");
-  lockPref("ldap_2.servers._nonascii.maxHits", 50);
-  lockPref("ldap_2.servers._nonascii.uri", "$ldap_nonascii_uri");
+  lockPref("ldap_2.servers.$mail_ldap_description.auth.dn", "$mail_ldap_dn");
+  lockPref("ldap_2.servers.$mail_ldap_description.auth.saslmech", "");
+  lockPref("ldap_2.servers.$mail_ldap_description.description", "$mail_ldap_description");
+  lockPref("ldap_2.servers.$mail_ldap_description.filename", "ldap.mab");
+  lockPref("ldap_2.servers.$mail_ldap_description.maxHits", $mail_ldap_max_hits);
+  lockPref("ldap_2.servers.$mail_ldap_description.uri", "$mail_ldap_uri");
+  lockPref("ldap_2.autoComplete.directoryServer", "ldap_2.servers.$mail_ldap_description");
   lockPref("ldap_2.autoComplete.directoryServer", "ldap_2.servers._nonascii");
   lockPref("ldap_2.autoComplete.useDirectory", true);
   lockPref("toolkit.telemetry.enabled", true);
@@ -74,11 +75,6 @@ try {
   pref("extensions.sieve.account.$ldap_mail_replaced@$mail_domain.port.type", 0);
   pref("extensions.sieve.account.$ldap_mail_replaced@$mail_domain.proxy.type", 1);
   pref("extensions.sieve.account.$ldap_mail_replaced@$mail_domain.sasl.forced", false);
-  defaultPref("extensions.shrunked.default.maxHeight", 1024);
-  defaultPref("extensions.shrunked.default.maxWidth", 1280);
-  defaultPref("extensions.shrunked.default.quality", 85);
-  defaultPref("quicktext.defaultImport", "$quicktext_default_import");
-  defaultPref("quicktext.firstTime", false);
   defaultPref("messenger.save.dir", "$messenger_save_dir");
   $caldav_settings
   lockPref("mail.identity.id1.htmlSigFormat", true);

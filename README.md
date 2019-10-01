@@ -1,4 +1,4 @@
 # thunderbird-mcd
 
 ###### Thunderbird Mission Critical Desktop
-Provides automated configuration for Thunderbird via PHP + OpenLDAP.
+Provides automated configuration for Thunderbird via PHP + LDAP server.

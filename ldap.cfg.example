@@ -1,20 +1,24 @@
 <?php
 //LDAP
 // Connection
-$ldap_host = 'ldap.example.com';
+$ldap_scheme = "ldap";
+$ldap_start_tls = true;
+$ldap_host = 'freeipa.example.com';
 $ldap_port = '389';
-$ldap_user = 'cn=reader,ou=people,dc=example,dc=com';
+$ldap_user = 'uid=reader,cn=users,cn=accounts,dc=example,dc=com';
 $ldap_password = 'reader';
 // The root of catalog
 $ldap_root = 'dc=example,dc=com';
 // Base for search uid
-$ldap_base = "ou=people,$ldap_root";
-// Base for search memberUid
+$ldap_base = "cn=users,cn=accounts,$ldap_root";
+// Base for search group membership
 $ldap_base_manager = "cn=TopManagers,ou=groups,$ldap_root";
 // VARS
 $ldap_uid = $_GET['user'];
 $ldap_filter = "(uid=$ldap_uid)";
 $ldap_filter_manager = "(memberUid=$ldap_uid)";
+$ldap_map_entryuuid = 'ipaUniqueID';
+$ldap_map_city = 'l';
 $ldap_target_gid = '1100';
 // Organisation
 $exten_prefix = ' доб. 1-';
@@ -30,9 +34,10 @@ $mail_server_port = '143';
 $mail_smtp_desc = 'SMTP server of our company';
 $mail_smtp_port = '25';
 $mail_identity_org = 'Example, Inc.';
-$ldap_nonascii_desc = 'Domain';
-$ldap_nonascii_uri = "ldap://$ldap_host/$ldap_base??sub?(objectClass=posixAccount)";
-$quicktext_default_import = '/home/exchange/quicktext.xml';
+$mail_ldap_description = 'FreeIPA';
+$mail_ldap_uri = "$ldap_scheme://$ldap_host:$ldap_port/$ldap_base??sub?(objectClass=person)";
+$mail_ldap_dn = "uid=$ldap_uid,$ldap_base";
+$mail_ldap_max_hits = 100;
 $messenger_save_dir = '/tmp';
 //Caldav
 $caldav_enable = true;
