@@ -53,7 +53,6 @@ try {
   lockPref("ldap_2.servers.$mail_ldap_description.maxHits", $mail_ldap_max_hits);
   lockPref("ldap_2.servers.$mail_ldap_description.uri", "$mail_ldap_uri");
   lockPref("ldap_2.autoComplete.directoryServer", "ldap_2.servers.$mail_ldap_description");
-  lockPref("ldap_2.autoComplete.directoryServer", "ldap_2.servers._nonascii");
   lockPref("ldap_2.autoComplete.useDirectory", true);
   lockPref("toolkit.telemetry.enabled", true);
   lockPref("toolkit.telemetry.prompted", 2);
