@@ -11,7 +11,7 @@ if(empty($_GET['user'])) {
   exit('Error: user not present');
 }
 
-=$ldap_uri = "$ldap_scheme://$ldap_host:$ldap_port";
+$ldap_uri = "$ldap_scheme://$ldap_host:$ldap_port";
 $link = ldap_connect($ldap_uri) or die("Can't parse LDAP uri");
 ldap_set_option($link, LDAP_OPT_PROTOCOL_VERSION, 3);
 
