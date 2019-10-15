@@ -62,6 +62,7 @@ try {
   lockPref("mail.spam.version", 1);
   lockPref("mail.rights.version", 1);
   lockPref("mail.server.default.check_all_folders_for_new", true);
+  lockPref("mailnews.database.global.indexer.enabled", true);
   pref("extensions.usebccinstead.lastCheckedState", true);
   pref("extensions.usebccinstead.nonBccCount", 1);
   pref("extensions.sieve.account.$ldap_mail_replaced@$mail_domain.TLS", true);
