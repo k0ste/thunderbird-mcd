@@ -56,6 +56,8 @@ try {
   lockPref("ldap_2.autoComplete.useDirectory", true);
   lockPref("toolkit.telemetry.enabled", true);
   lockPref("toolkit.telemetry.prompted", 2);
+  lockPref("app.update.auto", false);
+  lockPref("app.update.enabled", false);
   lockPref("mail.identity.id1.reply_to", "");
   lockPref("mail.identity.id1.sig_on_fwd", true);
   lockPref("mail.spam.manualMark", true);
