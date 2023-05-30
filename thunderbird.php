@@ -72,6 +72,12 @@ if (isset($info[0]["pager"])) {
   $ldap_pager = '';
 }
 
+if (isset($info[0]["facsimiletelephonenumber"][0])) {
+  $ldap_facs_to_webaskio = $info[0]["facsimiletelephonenumber"][0];
+} else {
+  $ldap_facs_to_webaskio = '';
+}
+
 require_once 'ldap.vars.php';
 
 $result_manager = ldap_search($link, $ldap_base_manager, $ldap_filter_manager);
@@ -79,17 +85,17 @@ $entry_manager = ldap_first_entry($link, $result_manager);
 
 if($entry_manager == false) {
   if($ldap_gid == $ldap_target_gid) {
-    $signature = getSignatureManager($siga_marketing, $siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $ldap_support_mail, $siga_url, $telnumber_all, $ldap_extention, $ldap_pager, $ldap_im, $siga_postfix);
+    $signature = getSignatureManager($siga_start_html, $siga_marketing_start, $ldap_facs_to_webaskio, $siga_marketing_end, $siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $ldap_support_mail, $siga_url, $telnumber_all, $ldap_extention, $ldap_pager, $ldap_im, $siga_postfix);
 } else {
-    $signature = getSignatureAll($siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_all, $ldap_extention, $ldap_pager, $siga_postfix);
+    $signature = getSignatureAll($siga_start_html, $siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_all, $ldap_extention, $ldap_pager, $siga_postfix);
   }
 } else {
   $ldap_attributes = ldap_get_attributes($link, $entry_manager);
   $counter = $ldap_attributes["count"];
   if($counter < 1) {
-    $signature = getSignatureAll($siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_all, $ldap_extention, $ldap_pager, $siga_postfix);
+    $signature = getSignatureAll($siga_start_html, $siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, $siga_url, $telnumber_all, $ldap_extention, $ldap_pager, $siga_postfix);
   } else {
-    $signature = getSignatureManager($siga_marketing, $siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, "", $siga_url, $telnumber_manager, $ldap_extention, $ldap_pager, $ldap_im, $siga_postfix);
+    $signature = getSignatureManager($siga_start_html, $siga_marketing_start, $ldap_facs_to_webaskio, $siga_marketing_end, $siga_prefix, $ldap_givenname_exploded, $ldap_sn, $ldap_title, "", $siga_url, $telnumber_manager, $ldap_extention, $ldap_pager, $ldap_im, $siga_postfix);
   }
 }
 
